@@ -103,28 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
        4. GSAP: THE REALITY (Pinned Staggered Storytelling)
        ========================================================================== */
 
- 
-    // Background Morph Trigger for tension
-    ScrollTrigger.create({
-        trigger: ".reality-section-pinned",
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => toggleRealityTheme(true),
-        onLeave: () => toggleRealityTheme(false),
-        onEnterBack: () => toggleRealityTheme(true),
-        onLeaveBack: () => toggleRealityTheme(false)
-    });
-
-    function toggleRealityTheme(isEntering) {
-        if (isEntering) {
-            body.classList.toggle("dark-theme", !isDarkMode);
-            body.classList.toggle("light-theme", isDarkMode);
-        } else {
-            body.classList.toggle("dark-theme", isDarkMode);
-            body.classList.toggle("light-theme", !isDarkMode);
-        }
-    }
-
     // Pinned Timeline for Staggered Blocks
     // We pin the wrapper and use the spacer height (300vh) to determine scroll duration
     const storyTimeline = gsap.timeline({
@@ -133,17 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
             start: "top top",
             end: "bottom bottom", // Tied to the 300vh spacer end
             scrub: true,
-            pin: ".pinned-story-container" // Pin the container holding absolute blocks
+            pin: ".pinned-story-container", // Pin the container holding absolute blocks
+            pinSpacing: false
         }
-    });
-
-    const timelineProgress = document.querySelector(".timeline-progress");
-    const progressLength = timelineProgress.getTotalLength();
-
-    // Set up the cyan line to be "drawn"
-    gsap.set(timelineProgress, {
-        strokeDasharray: progressLength,
-        strokeDashoffset: progressLength
     });
 
     const blocks = document.querySelectorAll(".story-block");
@@ -160,22 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ease: "power2.out"
         }, index * 1.5); // Stagger start times based on index
 
-        if (index === 1) {
-            // Draw cyan line to Block 2 (50% of the path)
-            storyTimeline.to(timelineProgress, {
-                strokeDashoffset: progressLength * 0.5,
-                duration: 1.5,
-                ease: "power1.inOut"
-            }, 0); // Start at 0, arrive at 1.5
-        } else if (index === 2) {
-            // Draw cyan line to Block 3 (100% of the path)
-            storyTimeline.to(timelineProgress, {
-                strokeDashoffset: 0,
-                duration: 1.5,
-                ease: "power1.inOut"
-            }, 1.5); // Start at 1.5, arrive at 3.0
-        }
-
         // If it's NOT the last block, fade it out so the next one can take focus
         if (index !== blocks.length - 1) {
             storyTimeline.to(block, {
@@ -186,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }, (index * 1.5) + 1.2); // Start fading out just before next block enters
         }
     });
+
     /* ==========================================================================
        5. GSAP: THE METHODOLOGY (Staggered Glass Cards & Pinning)
        ========================================================================== */
