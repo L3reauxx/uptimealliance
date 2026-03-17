@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         evolutionTl.to(oldText, {
             opacity: 0.15,
-            filter: "none",
+            filter: "blur(6px)",
             duration: 0.5,
             ease: "power2.out"
         }, "<"); // sync with logo fade out
