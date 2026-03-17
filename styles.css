@@ -596,6 +596,74 @@ p, body {
 }
 
 
+.staggered-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding-left: 10%;
+    padding-right: 5%;
+}
+
+/* Stagger the cards vertically */
+.card-2 {
+    margin-top: 8rem;
+}
+
+.card-3 {
+    margin-top: 16rem;
+}
+
+.glass-card {
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 24px; /* Slightly softer corners for premium feel */
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push content to bottom */
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 179, 126, 0.2);
+}
+
+.card-bg-number {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    font-family: var(--font-heading);
+    font-size: 14rem;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.03); /* Extremely subtle */
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.glass-card h3 {
+    color: var(--color-text-white);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.glass-card p {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
 /* --- Section 4: Footer & CTA --- */
 .morph-spacer {
     /* Height matches the GSAP end scroll distance (+1500px) minus a bit for overlapping */
@@ -773,15 +841,15 @@ p, body {
     fill: none;
     stroke: rgba(0, 0, 0, 0.579);
     stroke-width: 1px;
-    stroke-dasharray: 6px 6px;
+    stroke-dasharray: 3px 4px;
 }
 
 .timeline-progress {
     fill: none;
-    stroke: var(--grid-line);
-    stroke-width: 2px;
-    
-    stroke-dasharray: 6px 6px;
+    stroke: var(--accent-green);
+    stroke-width: 1px;
+    opacity: 0.8;
+    stroke-dasharray: 3px 4px;
 }
 /* Scroll Indicator */
 .scroll-indicator {
