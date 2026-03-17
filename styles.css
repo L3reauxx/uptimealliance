@@ -1,0 +1,831 @@
+/* ==========================================================================
+   GLOBAL VARIABLES & THEME SETUP
+   ========================================================================== */
+   :root {
+    /* Light Mode (Default) */
+    --bg-color: #FFFFFF;
+    --text-color: #0B1319;
+    --grid-line: rgba(0,0,0,0.05);
+
+    /* Core Accent */
+    --accent-green: #75c503;
+
+    /* Typography */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.8s ease, color 0.8s ease;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   RESET & UTILITIES
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography Scale */
+h1, h2 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+p, body {
+    font-family: var(--font-body);
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.6;
+}
+
+.massive-heading {
+    font-size: clamp(4rem, 8vw, 10rem);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.micro-copy {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* The scrambled highlighted text */
+.accent-text, #evolution-text.evolved {
+    color: var(--accent-green);
+    transition: color 0.3s ease;
+}
+
+/* Hero Typography specifics */
+.hero-bridge {
+    display: block; /* Ensure it forces the line breaks */
+    font-family: var(--font-body); /* Inter */
+    font-size: clamp(0.875rem, 1.2vw, 1.125rem); /* Keep it deliberately small */
+    font-weight: 500;
+    letter-spacing: 0.05em; /* Add slight tracking for a premium feel */
+    color: #718096; /* Use a muted slate gray so it recedes visually */
+    line-height: 1.2;
+    margin: 0.25rem 0;
+    text-align: left;
+}
+
+.hero-old-text {
+    display: block;
+    text-align: left;
+}
+
+.hero-new-text {
+    text-align: left;
+    display: block;
+    background: linear-gradient(90deg, transparent 40%, var(--accent-green) 50%, var(--text-color) 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #75c503;
+    background-size: 220% 100%;
+    background-position: 200% 0;
+}
+
+
+/* ==========================================================================
+   AMBIENT BLOBS (Breathing Background)
+   ========================================================================== */
+.blobs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(150px);
+    background-color: linear-gradient(
+        to bottom right,
+        #f8f9fa, /* very light gray */
+        #ffffff  /* pure white */
+    ); /* Signal Green faint Light Mode */
+    animation: drift 20s infinite alternate ease-in-out;
+    transition: background-color 0.8s ease;
+}
+
+
+
+.blob-1 {
+    width: 50vw;
+    height: 50vw;
+    top: -10vh;
+    left: -10vw;
+}
+
+.blob-2 {
+    width: 50vw;
+    height: 50vw;
+    bottom: -10vh;
+    right: -10vw;
+    animation-delay: -5s;
+    animation-duration: 22s;
+}
+
+.blob-3 {
+    width: 50vw;
+    height: 50vw;
+    top: 30vh;
+    left: 30vw;
+    animation-delay: -10s;
+    animation-duration: 25s;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(10vw, -10vh) scale(1.2);
+    }
+}
+
+
+/* ==========================================================================
+   STRUCTURAL GRID & EKG PULSE SVG
+   ========================================================================== */
+.global-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.grid-line-vertical {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 1px;
+    height: 100%;
+    background-color: var(--grid-line);
+    transition: background-color 0.8s ease;
+}
+
+.pulse-line-wrapper {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 100px; /* SVG viewBox is 100 wide to allow zig zags */
+    height: 100vh;
+    transform: translateX(-50%); /* Center the SVG exactly over the 1px line (x=50) */
+}
+
+.ekg-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* GSAP handles stroke-dashoffset */
+#ekg-path {
+    stroke-dasharray: 0; /* Updated via JS */
+    stroke-dashoffset: 0;
+}
+
+
+/* ==========================================================================
+   HEADER & THEME TOGGLE (Sun/Moon SVGs)
+   ========================================================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid var(--grid-line);
+    background-color: var(--bg-color);
+    z-index: 100;
+    transition: border-color 0.8s ease;
+}
+
+.header-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 5%;
+}
+
+.brand-logo {
+    height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: filter 0.8s ease;
+}
+
+.theme-toggle-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-toggle-icon svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+}
+
+/* Default state: Light mode showing Moon to switch to dark */
+.icon-sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+.icon-moon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+
+
+
+/* ==========================================================================
+   LAYOUT SECTIONS
+   ========================================================================== */
+.main-content {
+    position: relative;
+    z-index: 10;
+}
+
+.brutal-section {
+    border-bottom: 1px solid var(--grid-line);
+    transition: border-color 0.8s ease;
+    padding: 0;
+}
+
+/* GSAP Masking Utilities */
+.line-mask {
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 0.1em;
+}
+.reveal-text {
+    display: inline-block;
+    transform: translateY(100%); /* Initial state for GSAP */
+}
+
+/* --- Section 1: Hero --- */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 80px;
+    position: relative;
+    z-index: 1;
+    background-color: #f8f9fa;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: #FFFFFF;
+    opacity: 0.25;
+    z-index: -1;
+    animation: auroraMesh 20s linear infinite;
+}
+
+@keyframes auroraMesh {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.hero-grid {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-left-col {
+    width: 10%;
+    border-right: 1px solid var(--grid-line);
+    padding: 2rem 1rem;
+    transition: border-color 0.8s ease;
+}
+
+.hero-main-col {
+    width: 90%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 10vh;
+}
+
+.hero-micro {
+    writing-mode: vertical-rl;
+    transform: scale(-1);
+}
+
+.hero-logo-container {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin-bottom: 2rem;
+}
+
+.old-logo-img,
+.new-logo-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
+}
+
+
+/* --- Section 2: Reality (PINNED STAGGERED STORY) --- */
+/* The spacer handles the physical scroll height of the pin */
+.story-spacer {
+    height: 300vh; /* 3 screens of scrolling distance */
+}
+
+.reality-section-pinned {
+    position: relative;
+    z-index: 2;
+    background-color: var(--bg-color);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.pinned-story-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Pin wrapper is exactly 1 viewport tall */
+    display: flex;
+    overflow: hidden;
+}
+
+.reality-left-col-pinned {
+    width: 10%;
+    border-right: 1px solid var(--grid-line);
+    padding: 2rem 1rem;
+    height: 100%;
+    transition: border-color 0.8s ease;
+}
+
+.reality-story-main {
+    position: relative;
+    width: 90%;
+    height: 100%;
+}
+
+/* The massive blocks are stacked directly on top of each other via absolute positioning */
+.story-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center; /* Center vertically within the viewport */
+    padding: 0 4rem;
+    opacity: 0; /* Hidden initially, controlled by GSAP */
+    visibility: hidden;
+}
+
+.reality-body-text {
+    font-family: 'Inter', sans-serif;
+    text-transform: none !important;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.6;
+    font-weight: 400;
+    max-width: 600px;
+}
+
+
+/* Asymmetrical Layout rules */
+.story-block-1 {
+    justify-content: flex-start; /* Left Aligned */
+}
+
+.story-block-1 .reality-body-text {
+    text-align: left;
+}
+
+
+.story-block-2 {
+    justify-content: flex-end; /* Right Aligned */
+}
+
+.story-block-2 .reality-body-text {
+    text-align: right;
+}
+
+
+.story-block-3 {
+    justify-content: center; /* Center Aligned */
+}
+
+.story-block-3 .reality-body-text {
+    text-align: center;
+}
+
+
+
+/* --- Section 3: Methodology (Hover Polish & Abstract Icons) --- */
+.methodology-section {
+    position: relative;
+    /* Height will be managed by GSAP pinning, we give it min-height to ensure structure */
+    min-height: 100vh;
+    z-index: 3;
+    background-color: var(--bg-color);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.methodology-pinned-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.methodology-top-grid {
+    display: flex;
+    border-bottom: 1px solid var(--grid-line);
+    transition: border-color 0.8s ease;
+}
+
+.methodology-left-col {
+    width: 10%;
+    border-right: 1px solid var(--grid-line);
+    padding: 2rem 1rem;
+    transition: border-color 0.8s ease;
+}
+
+.methodology-main-col {
+    width: 90%;
+    padding: 2rem;
+}
+
+.methodology-heading {
+    font-size: clamp(3rem, 6vw, 8rem);
+}
+
+.methodology-columns-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-left: 10%;
+    padding: 4rem 2rem;
+    border-left: 1px solid var(--grid-line);
+    transition: border-color 0.8s ease;
+}
+
+.method-col {
+    position: relative;
+    padding: 3rem 2rem;
+    background: #FFFFFF;
+    border: 1px solid var(--grid-line);
+    border-radius: 0px;
+    transition: color 0.4s ease, border-color 0.8s ease;
+    overflow: hidden;
+    cursor: default;
+
+    /* Initial state for GSAP */
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+
+
+/* Icon Wrapper & Hover Physics */
+.col-icon-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.abstract-icon {
+    width: 48px;
+    height: 48px;
+    stroke: var(--text-color);
+    transition: stroke 0.4s ease, transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* The Bottom-Up Green Hover Fill */
+.method-col::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-green);
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+}
+
+/* Hover State Changes */
+.method-col:hover::before {
+    transform: scaleY(1);
+}
+
+.method-col:hover {
+    color: #0B1319; /* Force dark text for contrast on Green */
+}
+
+.method-col:hover .abstract-icon {
+    stroke: #0B1319; /* Invert icon stroke */
+    transform: scale(1.15) translateY(-5px); /* Smooth upward scale shift */
+}
+
+.col-heading {
+    font-size: clamp(2rem, 3vw, 4rem);
+    margin-bottom: 1.5rem;
+}
+
+.col-desc {
+    max-width: 95%;
+}
+
+
+/* --- Section 4: Footer & CTA --- */
+.morph-spacer {
+    /* Height matches the GSAP end scroll distance (+1500px) minus a bit for overlapping */
+    height: 1500px;
+}
+
+.footer-section {
+    padding: 8rem 0;
+    border-bottom: none;
+    position: relative;
+    z-index: 4;
+    background-color: var(--bg-color); /* Opaque background to wipe over the pinned section */
+    transition: background-color 0.8s ease;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.footer-grid {
+    display: flex;
+}
+
+.footer-left-col {
+    width: 10%;
+    border-right: 1px solid var(--grid-line);
+    padding: 0 1rem;
+    transition: border-color 0.8s ease;
+}
+
+.footer-main-col {
+    width: 90%;
+    padding: 0 2rem;
+}
+
+.footer-h1 {
+    margin-bottom: 4rem;
+}
+
+.form-wrapper {
+    max-width: 800px;
+}
+
+.form-intro {
+    margin-bottom: 4rem;
+}
+
+.brutal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 2rem;
+}
+
+.input-cell {
+    flex: 1;
+}
+
+.brutal-form input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.brutal-form input:focus {
+    border-bottom-color: var(--accent-green);
+}
+
+.brutal-form input::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.submit-row {
+    margin-top: 4rem;
+}
+
+/* Magnetic Button */
+.magnetic-button {
+    display: inline-block;
+    background-color: var(--accent-green);
+    color: #0B1319;
+    border: none;
+    padding: 2rem 4rem;
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+    text-transform: uppercase;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border-radius: 0;
+    transition: transform 0.1s ease;
+    will-change: transform;
+}
+
+.btn-text {
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero-left-col, .reality-left-col-pinned, .methodology-left-col, .footer-left-col {
+        display: none;
+    }
+
+    .hero-main-col, .reality-story-main, .methodology-main-col, .footer-main-col {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .global-grid .grid-line-vertical, .global-grid .pulse-line-wrapper {
+        left: 5%;
+    }
+
+    /* Reality Mobile Tweaks */
+    .story-block {
+        padding: 0 1rem;
+    }
+
+    .story-block-1 .reality-body-text, .story-block-2 .reality-body-text, .story-block-3 .reality-body-text {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .methodology-columns-grid {
+        grid-template-columns: 1fr;
+        margin-left: 0;
+        border-left: none;
+    }
+
+    .method-col {
+        border-right: none;
+        border-bottom: 1px solid var(--grid-line);
+        padding: 3rem 1rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .magnetic-button {
+        width: 100%;
+        padding: 1.5rem 1rem;
+        font-size: 1.5rem;
+    }
+}
+/* THE REALITY SECTION TIMELINE */
+.reality-timeline-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.timeline-track {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.579);
+    stroke-width: 1px;
+    stroke-dasharray: 3px 4px;
+}
+
+.timeline-progress {
+    fill: none;
+    stroke: var(--accent-green);
+    stroke-width: 1px;
+    opacity: 0.8;
+    stroke-dasharray: 3px 4px;
+}
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 10;
+}
+
+.scroll-text {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-color);
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 50px;
+    background-color: var(--grid-line);
+    position: relative;
+    overflow: hidden;
+}
+
+/* The animated green drop */
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: var(--accent-green);
+    animation: scrollDrop 2s infinite cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes scrollDrop {
+    0% { transform: translateY(-100%); }
+    50% { transform: translateY(100%); }
+    100% { transform: translateY(200%); }
+}

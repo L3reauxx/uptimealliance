@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uptime Alliance - The Next Chapter</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-theme">
+
+    <!-- Breathing Ambient Blobs -->
+    <div class="blobs-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Fixed Header -->
+    <header class="site-header">
+        <div class="header-grid">
+            <div class="header-logo-container">
+                <a href="#" class="logo-link">
+                    <img src="uptime-logo-coloured.svg" alt="Uptime Alliance Logo" id="brand-logo" class="brand-logo">
+                </a>
+            </div>
+            <div class="header-toggle-container">
+                <button class="theme-toggle-icon" id="theme-toggle-icon" aria-label="Toggle Theme">
+                    <!-- Sun Icon (Light Mode Default) -->
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon (Hidden Default) -->
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Grid Overlay & The Continuous EKG Pulse -->
+    <div class="global-grid">
+        <div class="grid-line-vertical"></div>
+        <div class="pulse-line-wrapper">
+            <!-- 100vh absolute SVG mapping the scroll journey -->
+            <svg class="ekg-svg" id="ekg-svg" viewBox="0 0 100 1000" preserveAspectRatio="none">
+                <!-- Straight line with spikes injected -->
+                <!-- Base faint EKG line track -->
+                <path d="M 50 0
+                         L 50 200
+                         L 20 220 L 80 240 L 50 260
+                         L 50 500
+                         L 20 520 L 80 540 L 50 560
+                         L 50 800
+                         L 20 820 L 80 840 L 50 860
+                         L 50 1000"
+                      fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+
+                <!-- Animated green EKG line -->
+                <path id="ekg-path" d="M 50 0
+                                       L 50 200
+                                       L 20 220 L 80 240 L 50 260
+                                       L 50 500
+                                       L 20 520 L 80 540 L 50 560
+                                       L 50 800
+                                       L 20 820 L 80 840 L 50 860
+                                       L 50 1000"
+                      fill="none" stroke="var(--accent-green)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="main-content">
+
+        <!-- Section 1: The Hero (Evolution Morph) -->
+        <section id="hero" class="brutal-section hero-section">
+            <div class="hero-grid">
+                <div class="hero-left-col">
+                    <p class="micro-copy hero-micro">INTRODUCING OUR NEXT CHAPTER</p>
+                </div>
+                <div class="hero-main-col">
+                    <div class="hero-logo-container">
+                        <img src="Oxygen Alliance Old Logo.svg" class="old-logo-img" alt="Oxygen Alliance Old Logo">
+                        <img src="uptime-logo-coloured.svg" class="new-logo-img" alt="Uptime Alliance Logo">
+                    </div>
+                    <h1 class="massive-heading hero-h1">
+                        <span class="line-mask"><span class="reveal-text hero-old-text">Oxygen Alliance</span></span>
+                        <span class="line-mask"><span class="reveal-text hero-bridge">is evolving to become</span></span>
+                        <span class="line-mask"><span class="reveal-text hero-new-text">Uptime Alliance.</span></span>
+                    </h1>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+    <span class="scroll-text">SCROLL</span>
+    <div class="scroll-line"></div>
+</div>
+        </section>
+
+        <!-- Section 2: The Reality (Pinned Staggered Storytelling) -->
+        <section id="reality" class="brutal-section reality-section-pinned">
+            <!-- Pinned Container for ScrollTrigger -->
+            <div class="pinned-story-container" id="story-container">
+                <div class="reality-left-col-pinned">
+                    <p class="micro-copy section-label">THE REALITY</p>
+                </div>
+
+
+                <div class="reality-story-main">
+
+                    <!-- Block 1: Left Aligned -->
+                    <div class="story-block story-block-1">
+                        <p class="reality-body-text">
+                            When we founded Oxygen Alliance in 2021, this community rallied around a single, urgent crisis. The pandemic exposed a lethal gap in global healthcare; we stepped in to ensure functional medical oxygen reached the patients who needed it most. We delivered.
+                        </p>
+                    </div>
+
+                    <!-- Block 2: Pushed Right -->
+                    <div class="story-block story-block-2">
+                        <p class="reality-body-text">
+                            But working alongside biomedical engineers in hospitals across low- and middle-income countries revealed a reality we could not ignore. Oxygen was just one piece of the puzzle. Today, up to 70% of all medical equipment in sub-Saharan Africa sits out of service. Monitors are dark. Incubators are cold.
+                        </p>
+                    </div>
+
+                    <!-- Block 3: Centered -->
+                    <div class="story-block story-block-3">
+                        <p class="reality-body-text">
+                            Every patient deserves functional, safe medical equipment. We realized that to truly support these health systems, our mission had to expand. We are no longer just responding to an emergency; we are orchestrating a permanent transformation of the entire biomedical infrastructure.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Spacer to allow scrolling while pinned -->
+            <div class="story-spacer"></div>
+        </section>
+
+        <!-- Section 3: The Methodology (Abstract Icons & Staggered Glass Cards) -->
+        <section id="methodology" class="brutal-section methodology-section">
+            <div class="methodology-pinned-wrapper">
+                <div class="methodology-top-grid">
+                     <div class="methodology-left-col">
+                         <p class="micro-copy section-label">OUR METHODOLOGY</p>
+                     </div>
+                     <div class="methodology-main-col">
+                         <h2 class="methodology-heading">THE NEW STANDARD</h2>
+                     </div>
+                </div>
+
+            <div class="methodology-columns-grid">
+                <!-- Column 1: Advocate -->
+                <div class="method-col col-1">
+                    <div class="col-icon-wrapper">
+                        <!-- Abstract Chart/Rising SVG -->
+                        <svg class="abstract-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="col-heading">ADVOCATE</h3>
+                    <p class="col-desc">Mobilizing ecosystem players for national policy shifts that prioritize sustainable healthcare technology management.</p>
+                </div>
+
+                <!-- Column 2: Educate -->
+                <div class="method-col col-2">
+                    <div class="col-icon-wrapper">
+                        <!-- Abstract Node/Geometric SVG -->
+                        <svg class="abstract-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
+                            <line x1="12" y1="22" x2="12" y2="12"></line>
+                            <line x1="22" y1="8.5" x2="12" y2="12"></line>
+                            <line x1="2" y1="8.5" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3 class="col-heading">EDUCATE</h3>
+                    <p class="col-desc">Collecting critical data and providing continuous professional development through targeted mentorship.</p>
+                </div>
+
+                <!-- Column 3: Innovate -->
+                <div class="method-col col-3">
+                    <div class="col-icon-wrapper">
+                        <!-- Abstract Web/Network SVG -->
+                        <svg class="abstract-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </div>
+                    <h3 class="col-heading">INNOVATE</h3>
+                    <p class="col-desc">Developing scalable digital resources and shared networks to connect the global biomedical workforce.</p>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Morph Spacer to allow the pinned methodology animation to complete -->
+        <div class="morph-spacer"></div>
+
+        <!-- Section 4: The Footer & CTA -->
+        <section id="footer-cta" class="brutal-section footer-section">
+            <div class="footer-grid">
+                <div class="footer-left-col">
+                    <p class="micro-copy section-label">THE CONNECTION</p>
+                </div>
+                <div class="footer-main-col">
+                    <h1 class="massive-heading footer-h1">STAND WITH UPTIME.</h1>
+
+                    <div class="form-wrapper">
+                        <p class="form-intro">The site is under construction. The mission is not. Reaffirm your commitment and be the first to know when the new platform launches.</p>
+
+                        <form id="uptime-form" class="brutal-form">
+                            <div class="form-row">
+                                <div class="input-cell">
+                                    <input type="text" id="firstName" name="firstName" placeholder="FIRST NAME" required>
+                                </div>
+                                <div class="input-cell">
+                                    <input type="text" id="lastName" name="lastName" placeholder="LAST NAME" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-cell">
+                                    <input type="text" id="organization" name="organization" placeholder="ORGANIZATION" required>
+                                </div>
+                                <div class="input-cell">
+                                    <input type="email" id="email" name="email" placeholder="EMAIL ADDRESS" required>
+                                </div>
+                            </div>
+                            <div class="submit-row">
+                                <button type="submit" class="magnetic-button" id="magnetic-btn">
+                                    <span class="btn-text">I STAND WITH UPTIME ALLIANCE</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>
