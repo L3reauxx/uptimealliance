@@ -778,10 +778,10 @@ p, body {
 
 .timeline-progress {
     fill: none;
-    stroke: var(--accent-green);
-    stroke-width: 1px;
-    opacity: 2px;
-    stroke-dasharray: 3px 4px;
+    stroke: var(--grid-line);
+    stroke-width: 2px;
+    
+    stroke-dasharray: 6px 6px;
 }
 /* Scroll Indicator */
 .scroll-indicator {
