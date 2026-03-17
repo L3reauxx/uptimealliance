@@ -86,6 +86,7 @@ p, body {
     font-weight: 500;
     letter-spacing: 0.05em; /* Add slight tracking for a premium feel */
     color: #718096; /* Use a muted slate gray so it recedes visually */
+    filter: blur(150px)
     line-height: 1.2;
     margin: 0.25rem 0;
     text-align: left;
@@ -128,7 +129,7 @@ p, body {
     filter: blur(150px);
     background-color: linear-gradient(
         to bottom right,
-        #f8f9fa, /* very light gray */
+        #faf9f6 , /* very light gray */
         #ffffff  /* pure white */
     ); /* Signal Green faint Light Mode */
     animation: drift 20s infinite alternate ease-in-out;
