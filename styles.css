@@ -773,14 +773,14 @@ p, body {
     fill: none;
     stroke: rgba(0, 0, 0, 0.579);
     stroke-width: 1px;
-    stroke-dasharray: 3px 4px;
+    stroke-dasharray: 6px 6px;
 }
 
 .timeline-progress {
     fill: none;
     stroke: var(--accent-green);
     stroke-width: 1px;
-    opacity: 0.8;
+    opacity: 2px;
     stroke-dasharray: 3px 4px;
 }
 /* Scroll Indicator */
