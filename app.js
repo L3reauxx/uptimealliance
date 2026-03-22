@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             y: 0,
             duration: 1,
             ease: "power2.out"
-        }, index * 1.5); // Stagger start times based on index
+        }, index * 1.0); // Stagger start times based on index
 
         // If it's NOT the last block, fade it out so the next one can take focus
         if (index !== blocks.length - 1) {
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 y: -50,
                 duration: 1,
                 ease: "power2.in"
-            }, (index * 1.5) + 1.2); // Start fading out just before next block enters
+            }, (index * 1.0) + 0.8); // Start fading out just before next block enters
         }
     });
 
