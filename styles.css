@@ -529,7 +529,9 @@ p, body {
 .method-col {
     position: relative;
     padding: 3rem 2rem;
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--grid-line);
     border-radius: 0px;
     transition: color 0.4s ease, border-color 0.8s ease;
