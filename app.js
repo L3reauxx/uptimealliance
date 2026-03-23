@@ -79,45 +79,38 @@ document.addEventListener("DOMContentLoaded", () => {
        4. GSAP: THE REALITY (Pinned Staggered Storytelling)
        ========================================================================== */
 
-    // Pinned Timeline for Staggered Blocks
-    // We pin the wrapper and use the spacer height (150vh) to determine scroll duration
     const storyTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".reality-section-pinned",
-            start: "top 50%",
-            end: "bottom bottom", // Tied to the 150vh spacer end
+            start: "top top",
+            end: "+=3000", // Fixed scroll distance
             scrub: true,
-            pin: ".pinned-story-container", // Pin the container holding absolute blocks
-            pinSpacing: false
+            pin: ".pinned-story-container",
+            pinSpacing: true // Forces the next section to wait
         }
     });
 
     const blocks = document.querySelectorAll(".story-block");
 
     blocks.forEach((block, index) => {
-        // Prepare block: Ensure it's hidden and slightly translated down
         gsap.set(block, { autoAlpha: 0, y: 50 });
 
-        // Fade in and slide up
-        storyTimeline.to(block, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out"
-        }, index * 1.0); // Stagger start times based on index
+        if (index === 0) {
+            // First block appears very quickly (kills the white space delay)
+            storyTimeline.to(block, { autoAlpha: 1, y: 0, duration: 0.2 }, 0);
+        } else {
+            // Subsequent blocks enter normally
+            storyTimeline.to(block, { autoAlpha: 1, y: 0, duration: 0.5 }, "+=0.2");
+        }
 
-        // If it's NOT the last block, fade it out so the next one can take focus
+        // If it's NOT the last block, fade it out
         if (index !== blocks.length - 1) {
-            storyTimeline.to(block, {
-                autoAlpha: 0,
-                y: -50,
-                duration: 1,
-                ease: "power2.in"
-            }, (index * 1.0) + 0.8); // Start fading out just before next block enters
+            storyTimeline.to(block, { autoAlpha: 0, y: -50, duration: 0.5 }, "+=0.8");
         }
     });
 
-    storyTimeline.to({}, { duration: 1.5 }); // Creates a scrolling buffer to read the final block
+    // The Reading Buffer: Holds the last block on screen before unpinning
+    storyTimeline.to({}, { duration: 1.5 });
 
     /* ==========================================================================
        5. GSAP: THE METHODOLOGY (Staggered Glass Cards & Pinning)
