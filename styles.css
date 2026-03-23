@@ -196,25 +196,6 @@ p, body {
     transition: background-color 0.8s ease;
 }
 
-.pulse-line-wrapper {
-    position: absolute;
-    top: 0;
-    left: 10%;
-    width: 100px; /* SVG viewBox is 100 wide to allow zig zags */
-    height: 100vh;
-    transform: translateX(-50%); /* Center the SVG exactly over the 1px line (x=50) */
-}
-
-.ekg-svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* GSAP handles stroke-dashoffset */
-#ekg-path {
-    stroke-dasharray: 0; /* Updated via JS */
-    stroke-dashoffset: 0;
-}
 
 
 /* ==========================================================================
@@ -390,7 +371,7 @@ p, body {
 /* --- Section 2: Reality (PINNED STAGGERED STORY) --- */
 /* The spacer handles the physical scroll height of the pin */
 .story-spacer {
-    height: 200vh; /* 2 screens of scrolling distance */
+    height: 150vh; /* 1.5 screens of scrolling distance */
 }
 
 .reality-section-pinned {
@@ -791,7 +772,7 @@ p, body {
         padding: 1rem;
     }
 
-    .global-grid .grid-line-vertical, .global-grid .pulse-line-wrapper {
+    .global-grid .grid-line-vertical {
         left: 5%;
     }
 

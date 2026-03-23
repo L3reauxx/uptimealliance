@@ -76,40 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
 );
 
     /* ==========================================================================
-       3. GSAP: THE CONTINUOUS EKG PULSE (SVG Path Draw)
-       ========================================================================== */
-    const ekgPath = document.getElementById("ekg-path");
-
-    // Calculate total length of the SVG path
-    const pathLength = ekgPath.getTotalLength();
-
-    // Set up SVG stroke dashed array to hide it initially
-    ekgPath.style.strokeDasharray = pathLength;
-    ekgPath.style.strokeDashoffset = pathLength;
-
-    // Draw the EKG line based on document scroll progress
-    gsap.to(ekgPath, {
-        strokeDashoffset: 0,
-        ease: "none",
-        scrollTrigger: {
-            trigger: document.body,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1 // Add slight smoothness (1 second delay) to scrub
-        }
-    });
-
-    /* ==========================================================================
        4. GSAP: THE REALITY (Pinned Staggered Storytelling)
        ========================================================================== */
 
     // Pinned Timeline for Staggered Blocks
-    // We pin the wrapper and use the spacer height (300vh) to determine scroll duration
+    // We pin the wrapper and use the spacer height (150vh) to determine scroll duration
     const storyTimeline = gsap.timeline({
         scrollTrigger: {
             trigger: ".reality-section-pinned",
-            start: "top top",
-            end: "bottom bottom", // Tied to the 300vh spacer end
+            start: "top 50%",
+            end: "bottom bottom", // Tied to the 150vh spacer end
             scrub: true,
             pin: ".pinned-story-container", // Pin the container holding absolute blocks
             pinSpacing: false
