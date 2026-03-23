@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
             start: "top top",
             end: "+=3000", // Fixed scroll distance
             scrub: true,
-            pin: ".pinned-story-container",
+            pin: ".reality-section-pinned", // Pin the main wrapper instead of the inner container
             pinSpacing: true // Forces the next section to wait
         }
     });
