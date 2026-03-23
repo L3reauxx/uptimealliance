@@ -378,7 +378,7 @@ p, body {
 }
 
 .pinned-story-container {
-    position: absolute;
+    position: relative; /* Changed from absolute to relative */
     top: 0;
     left: 0;
     width: 100%;
