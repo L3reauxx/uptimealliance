@@ -56,33 +56,6 @@
     <!-- Global Grid Overlay & The Continuous EKG Pulse -->
     <div class="global-grid">
         <div class="grid-line-vertical"></div>
-        <div class="pulse-line-wrapper">
-            <!-- 100vh absolute SVG mapping the scroll journey -->
-            <svg class="ekg-svg" id="ekg-svg" viewBox="0 0 100 1000" preserveAspectRatio="none">
-                <!-- Straight line with spikes injected -->
-                <!-- Base faint EKG line track -->
-                <path d="M 50 0
-                         L 50 200
-                         L 20 220 L 80 240 L 50 260
-                         L 50 500
-                         L 20 520 L 80 540 L 50 560
-                         L 50 800
-                         L 20 820 L 80 840 L 50 860
-                         L 50 1000"
-                      fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-
-                <!-- Animated green EKG line -->
-                <path id="ekg-path" d="M 50 0
-                                       L 50 200
-                                       L 20 220 L 80 240 L 50 260
-                                       L 50 500
-                                       L 20 520 L 80 540 L 50 560
-                                       L 50 800
-                                       L 20 820 L 80 840 L 50 860
-                                       L 50 1000"
-                      fill="none" stroke="var(--accent-green)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3" />
-            </svg>
-        </div>
     </div>
 
     <!-- MAIN CONTENT CONTAINER -->
