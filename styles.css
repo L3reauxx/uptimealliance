@@ -371,7 +371,7 @@ p, body {
 /* --- Section 2: Reality (PINNED STAGGERED STORY) --- */
 /* The spacer handles the physical scroll height of the pin */
 .story-spacer {
-    height: 150vh; /* 1.5 screens of scrolling distance */
+    height: 250vh; /* 1.5 screens of scrolling distance */
 }
 
 .reality-section-pinned {

@@ -117,6 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    storyTimeline.to({}, { duration: 1.5 }); // Creates a scrolling buffer to read the final block
+
     /* ==========================================================================
        5. GSAP: THE METHODOLOGY (Staggered Glass Cards & Pinning)
        ========================================================================== */
