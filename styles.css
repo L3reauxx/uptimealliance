@@ -368,88 +368,124 @@ p, body {
 }
 
 
-/* --- Section 2: Reality (PINNED STAGGERED STORY) --- */
-
-.reality-section-pinned {
+/* --- Section 2: Reality (Sticky Layout) --- */
+.reality-section {
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--grid-line);
     position: relative;
     z-index: 2;
-    background-color: var(--bg-color);
-    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
-.pinned-story-container {
-    position: relative; /* Changed from absolute to relative */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh; /* Pin wrapper is exactly 1 viewport tall */
+.reality-grid-wrapper {
     display: flex;
-    overflow: hidden;
+    width: 100%;
 }
 
-.reality-left-col-pinned {
+.reality-left-col {
     width: 10%;
     border-right: 1px solid var(--grid-line);
     padding: 2rem 1rem;
-    height: 100%;
     transition: border-color 0.8s ease;
 }
 
-.reality-story-main {
-    position: relative;
+.reality-main-col {
     width: 90%;
-    height: 100%;
+    /* No padding here, handled by internal grid */
 }
 
-/* The massive blocks are stacked directly on top of each other via absolute positioning */
-.story-block {
+.sticky-grid {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: 4rem;
+    padding: 6rem 4rem;
+}
+
+/* Sidebar & Sticky Behavior */
+.sticky-sidebar {
+    position: relative;
+}
+
+.sticky-content {
+    position: sticky;
+    top: 10rem; /* Sticks 10rem from the top of the viewport */
+}
+
+.sticky-heading {
+    font-size: clamp(2rem, 3vw, 3rem);
+    margin-bottom: 2rem;
+}
+
+.mb-2 { margin-bottom: 2rem; }
+.mb-4 { margin-bottom: 4rem; }
+
+.context-box {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--grid-line);
+}
+
+.context-label {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.context-desc {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Scrolling Content Area */
+.reality-body-text {
+    font-family: var(--font-body);
+    font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* Image & Blockquote Styling */
+.image-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #F8FAFC;
+    border: 1px solid var(--grid-line);
+    position: relative;
+    overflow: hidden;
+}
+
+.reg-mark {
     position: absolute;
-    top: 0;
-    left: 0;
+    font-size: 10px;
+    opacity: 0.4;
+    font-family: monospace;
+}
+
+.reg-mark.top-left { top: 0.5rem; left: 0.5rem; }
+.reg-mark.bottom-right { bottom: 0.5rem; right: 0.5rem; }
+
+.premium-img {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center; /* Center vertically within the viewport */
-    padding: 0 4rem;
-    opacity: 0; /* Hidden initially, controlled by GSAP */
-    visibility: hidden;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
 }
 
-.reality-body-text {
-    font-family: 'Inter', sans-serif;
-    text-transform: none !important;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    line-height: 1.6;
-    font-weight: 400;
-    max-width: 600px;
+.premium-img:hover {
+    filter: grayscale(0%);
 }
 
-
-/* Asymmetrical Layout rules */
-.story-block-1 {
-    justify-content: flex-start; /* Left Aligned */
+.brutal-quote {
+    border-left: 2px solid var(--accent-green);
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
-.story-block-1 .reality-body-text {
-    text-align: left;
-}
-
-
-.story-block-2 {
-    justify-content: flex-end; /* Right Aligned */
-}
-
-.story-block-2 .reality-body-text {
-    text-align: right;
-}
-
-
-.story-block-3 {
-    justify-content: center; /* Center Aligned */
-}
-
-.story-block-3 .reality-body-text {
-    text-align: center;
+.brutal-quote p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--text-color);
 }
 
 
@@ -759,11 +795,11 @@ p, body {
    RESPONSIVE DESIGN
    ========================================================================== */
 @media (max-width: 768px) {
-    .hero-left-col, .reality-left-col-pinned, .methodology-left-col, .footer-left-col {
+    .hero-left-col, .reality-left-col, .methodology-left-col, .footer-left-col {
         display: none;
     }
 
-    .hero-main-col, .reality-story-main, .methodology-main-col, .footer-main-col {
+    .hero-main-col, .reality-main-col, .methodology-main-col, .footer-main-col {
         width: 100%;
         padding: 1rem;
     }
@@ -773,13 +809,15 @@ p, body {
     }
 
     /* Reality Mobile Tweaks */
-    .story-block {
-        padding: 0 1rem;
+    .sticky-grid {
+        grid-template-columns: 1fr; /* Stack on mobile */
+        padding: 4rem 1.5rem;
+        gap: 3rem;
     }
 
-    .story-block-1 .reality-body-text, .story-block-2 .reality-body-text, .story-block-3 .reality-body-text {
-        max-width: 100%;
-        text-align: left;
+    .sticky-content {
+        position: relative;
+        top: 0;
     }
 
     .methodology-columns-grid {
