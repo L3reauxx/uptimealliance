@@ -445,11 +445,11 @@ p, body {
 
 
 .story-block-3 {
-    justify-content: center; /* Center Aligned */
+    justify-content: left; /* Center Aligned */
 }
 
 .story-block-3 .reality-body-text {
-    text-align: center;
+    text-align: left;
 }
 
 
