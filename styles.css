@@ -474,18 +474,12 @@ p, body {
     filter: grayscale(0%);
 }
 
-.brutal-quote {
-    border-left: 2px solid var(--accent-green);
-    padding-left: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+.story-block-3 {
+    justify-content: left; /* Center Aligned */
 }
 
-.brutal-quote p {
-    font-size: 1.25rem;
-    font-weight: 500;
-    font-style: italic;
-    color: var(--text-color);
+.story-block-3 .reality-body-text {
+    text-align: left;
 }
 
 
