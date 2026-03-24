@@ -76,43 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
 );
 
     /* ==========================================================================
-       4. GSAP: THE REALITY (Pinned Staggered Storytelling)
-       ========================================================================== */
-
-    const storyTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".reality-section-pinned",
-            start: "top top",
-            end: "+=3000", // Fixed scroll distance
-            scrub: true,
-            pin: ".reality-section-pinned", // Pin the main wrapper instead of the inner container
-            pinSpacing: true // Forces the next section to wait
-        }
-    });
-
-    const blocks = document.querySelectorAll(".story-block");
-
-    blocks.forEach((block, index) => {
-        gsap.set(block, { autoAlpha: 0, y: 50 });
-
-        if (index === 0) {
-            // First block appears very quickly (kills the white space delay)
-            storyTimeline.to(block, { autoAlpha: 1, y: 0, duration: 0.2 }, 0);
-        } else {
-            // Subsequent blocks enter normally
-            storyTimeline.to(block, { autoAlpha: 1, y: 0, duration: 0.5 }, "+=0.2");
-        }
-
-        // If it's NOT the last block, fade it out
-        if (index !== blocks.length - 1) {
-            storyTimeline.to(block, { autoAlpha: 0, y: -50, duration: 0.5 }, "+=0.8");
-        }
-    });
-
-    // The Reading Buffer: Holds the last block on screen before unpinning
-    storyTimeline.to({}, { duration: 1.5 });
-
-    /* ==========================================================================
        5. GSAP: THE METHODOLOGY (Staggered Glass Cards & Pinning)
        ========================================================================== */
     const methodologyTl = gsap.timeline({
