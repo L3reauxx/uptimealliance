@@ -62,7 +62,7 @@ p, body {
     word-wrap: break-word;
     word-break: break-word;
     hyphens: auto;
-    word-spacing: 10px;
+    word-spacing: 1rem;
 }
 
 .micro-copy {
@@ -709,6 +709,7 @@ p, body {
 
 .footer-h1 {
     margin-bottom: 4rem;
+    word-spacing: 1rem;
 }
 
 .form-wrapper {
@@ -784,6 +785,7 @@ p, body {
     pointer-events: none;
     position: relative;
     z-index: 2;
+    word-spacing: 1rem;
 }
 
 
