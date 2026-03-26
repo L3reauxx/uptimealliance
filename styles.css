@@ -290,7 +290,7 @@ p, body {
 
 /* --- Section 1: Hero --- */
 .hero-section {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
