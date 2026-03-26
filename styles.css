@@ -290,7 +290,7 @@ p, body {
 
 /* --- Section 1: Hero --- */
 .hero-section {
-    min-height: 100vh;
+    min-height: 85vh; /* Reduced from 100vh to reveal the top of the next section */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -345,7 +345,7 @@ p, body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-bottom: 10vh;
+    padding-bottom: 5vh; /* Reduced from 10vh to balance the shorter hero height */
 }
 
 .hero-micro {
