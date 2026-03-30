@@ -398,8 +398,8 @@ p, body {
 .sticky-grid {
     display: grid;
     grid-template-columns: 4fr 8fr;
-    gap: 4rem;
-    padding: 6rem 4rem;
+    gap: 3rem;
+    padding: 4rem 4rem;
 }
 
 /* Sidebar & Sticky Behavior */
@@ -417,8 +417,8 @@ p, body {
     margin-bottom: 2rem;
 }
 
-.mb-2 { margin-bottom: 2rem; }
-.mb-4 { margin-bottom: 4rem; }
+.mb-2 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 3rem; }
 
 .context-box {
     margin-top: 2rem;
@@ -530,14 +530,14 @@ p, body {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-left: 10%;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     border-left: 1px solid var(--grid-line);
     transition: border-color 0.8s ease;
 }
 
 .method-col {
     position: relative;
-    padding: 3rem 2rem;
+    padding: 2rem 1.5rem;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -682,7 +682,7 @@ p, body {
 }
 
 .footer-section {
-    padding: 8rem 0;
+    padding: 5rem 0;
     border-bottom: none;
     position: relative;
     z-index: 4;
